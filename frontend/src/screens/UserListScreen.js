@@ -4,17 +4,33 @@ import { Table, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message.js'
 import Loader from '../components/Loader.js'
-import { listUsers } from '../actions/userActions.js'
-const UserListScreen = () => {
+import { listUsers ,deleteUser} from '../actions/userActions.js'
+const UserListScreen = ({history}) => {
   const dispatch = useDispatch()
   const userList = useSelector((state) => state.userList)
-  const { loading, error, users } = userList
-  useEffect(() => {
-    dispatch(listUsers())
-  }, [dispatch])
+    const { loading, error, users } = userList
+    
+    const userLogin = useSelector((state) => state.userLogin)
+      const { userInfo } = userLogin
+      
+      const userDelete = useSelector((state) => state.userDelete)
+        const { success:successDelete } = userDelete
+    useEffect(() => {
+      if (userInfo && userInfo.isAdmin) {
+        dispatch(listUsers())
+      } else {
+        //   this will redirect the non-admin access to the login page 
+        history.push('/login')
+      }
+      // eslint-disable-next-line
+    }, [dispatch,history,successDelete])
     
     const deleteHandler = (id) => {
-        console.log('delete')
+        // console.log('delete')
+        if (window.confirm('Are you sure?')) {
+            
+            dispatch(deleteUser(id))
+        }
     }
   return (
     <>
