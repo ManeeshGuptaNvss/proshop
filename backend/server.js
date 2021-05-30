@@ -1,5 +1,5 @@
 import express from 'express'
-import path from 'path '
+import path from 'path'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 import dotenv from 'dotenv'
 import colors from 'colors'
