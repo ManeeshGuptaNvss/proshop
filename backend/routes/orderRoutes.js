@@ -3,7 +3,7 @@ import {
   addOrderItems,
   getOrderById,
   updateOrderToPaid,
-  getMyOrders,getOrders
+  getMyOrders,getOrders, updateOrderToDelivered
 } from '../controllers/orderController.js'
 import { protect,admin } from '../middleware/authMiddleware.js'
 const router = express.Router()
@@ -13,4 +13,5 @@ router.route('/myorders').get(protect,getMyOrders)
 //otherwise any other parameter defined above maybe treated as 'id'
 router.route('/:id').get(protect,getOrderById)
 router.route('/:id/pay').put(protect,updateOrderToPaid)
+router.route('/:id/deliver').put(protect,admin,updateOrderToDelivered)
 export default router
