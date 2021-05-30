@@ -112,7 +112,7 @@ const ProductScreen = ({history, match }) => {
               </ListGroup>
             </Card>
           </Col>
-        </Row>
+            
       )}
     </div>
   )
