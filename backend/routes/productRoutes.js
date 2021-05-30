@@ -6,6 +6,7 @@ import {
   deleteProduct,
   createProduct,
   updateProduct,
+  createProductReview
 } from '../controllers/productControllers.js'
 // import asyncHandler from 'express-async-handler'
 
@@ -19,4 +20,6 @@ router
   .delete(protect, admin, deleteProduct)
   .put(protect, admin, updateProduct)
 
+  
+router.route('/:id/reviews').post(protect,createProductReview)
 export default router
