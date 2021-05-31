@@ -4,7 +4,16 @@ import Product from '../models/productModel.js'
 // @route GET /api/products
 // @access Public
 const getProducts = asyncHandler(async (req, res) => {
-  const products = await Product.find({})
+  const keyword = req.query.keyword
+    ? {
+        name: {
+          $regex: req.query.keyword,
+          // the following will add case insensitivity
+          $options: 'i',
+        },
+      }
+    : {}
+  const products = await Product.find({ ...keyword })
   // Used for checking error in redux state management
   // res.status(401)
   // throw new Error('Not Authorized')
