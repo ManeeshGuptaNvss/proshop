@@ -5,6 +5,7 @@ import Message from '../components/Message.js'
 import Loader from '../components/Loader.js'
 import { listProducts } from '../actions/productActions'
 import Product from '../components/Product'
+import ProductCarousel from '../components/ProductCarousel.js'
 // import axios from 'axios'
 const HomeScreen = ({match}) => {
 const keyword=match.params.keyword
@@ -18,6 +19,7 @@ const keyword=match.params.keyword
 
   return (
     <>
+      {!keyword&&<ProductCarousel/>}
       <h1>Latest Products</h1>
       {loading ? (
         <Loader/>
