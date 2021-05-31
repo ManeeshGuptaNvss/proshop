@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Meta from '../components/Meta.js'
 import Message from '../components/Message.js'
 import Loader from '../components/Loader.js'
 import { useDispatch, useSelector } from 'react-redux'
@@ -59,6 +60,7 @@ const ProductScreen = ({ history, match }) => {
   }
   return (
     <>
+      <Meta title={product.name }/>
       <Link className='btn btn-light my-3' to='/'>
         GO BACK
       </Link>
